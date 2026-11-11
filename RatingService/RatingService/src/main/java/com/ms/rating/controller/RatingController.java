@@ -17,26 +17,26 @@ public class RatingController {
     @Autowired
     private ServiceRating serviceRating;
 
-    @PreAuthorize("hasAuthority('Admin')")
+
     @PostMapping("/upload")
     public ResponseEntity<RatingEntity> save(@RequestBody RatingEntity ratings){
         RatingEntity savedRating = serviceRating.save(ratings);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRating);
     }
 
-    @PreAuthorize("hasAuthority('SCOPE_Internal') || hasAuthority('Admin')")
+
     @GetMapping("/getAll")
     public ResponseEntity<List<RatingEntity>> getAll(){
         return ResponseEntity.ok(serviceRating.getAll());
     }
 
-    @PreAuthorize("hasAuthority('SCOPE_Internal')")
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<RatingEntity>> getByUserId(@PathVariable String userId){
         return ResponseEntity.ok(serviceRating.findByUserId(userId));
     }
 
-    @PreAuthorize("hasAuthority('SCOPE_Internal')")
+
     @GetMapping("/hotel/{hotelId}")
     public ResponseEntity<List<RatingEntity>> getByHotelId(@PathVariable String hotelId){
         return ResponseEntity.ok(serviceRating.findByHotelId(hotelId));
