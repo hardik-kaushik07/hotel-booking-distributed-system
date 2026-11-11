@@ -26,6 +26,7 @@ public class UserEntity {
     private String email;
     private String about;
 
+    @Builder.Default
     @Transient
     private List<Rating> ratings = new ArrayList<>();
 }
